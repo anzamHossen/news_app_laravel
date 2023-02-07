@@ -33,7 +33,7 @@
                                     <div class="text-success">{{ session()->get('success') }}</div>
                                 @endif
 
-                                <form method="POST" action="{{ route('admin_login_submit') }}">
+                                <form method="POST" action="{{ route('auth_login') }}">
                                     @csrf
                                     <div class="form-group">
                                         <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Address" value="{{ old('email') }}" autofocus>

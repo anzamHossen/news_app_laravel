@@ -1,15 +1,15 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('admin_home') }}">Admin Panel</a>
+            <a href="{{ route('dashboard') }}">Admin Panel</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{ route('admin_home') }}"></a>
+            <a href="{{ route('dashboard') }}"></a>
         </div>
 
         <ul class="sidebar-menu">
 
-            <li class="#"><a class="nav-link" href="{{ route('admin_home') }}"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+            <li class="#"><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
              
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Advertisement</span></a>

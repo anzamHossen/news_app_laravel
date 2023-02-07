@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -17,15 +19,19 @@ use App\Http\Controllers\Admin\AdminPostController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about-page', [AboutController::class, 'index'])->name('about-page');
 
+Route::match(['get', 'post'], 'admin/admin-login', [AuthController::class, 'login'])->middleware('auth')->name('auth_login');
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth_logout');
+
+// Route::get('/admin/login', [AdminLoginController::class, 'index'])->name('admin_login');
+// Route::post('/admin/login-submit', [AdminLoginController::class, 'login_submit'])->name('admin_login_submit');
+// Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
 
 
 /* Admin */
-Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
+Route::prefix('/admin')->middleware('admin')->group(function (){
 
-Route::get('/admin/login', [AdminLoginController::class, 'index'])->name('admin_login');
-Route::post('/admin/login-submit', [AdminLoginController::class, 'login_submit'])->name('admin_login_submit');
-
-Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
+// Route::get('/admin/dashboard', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/admin/forget-password', [AdminLoginController::class, 'forget_password'])->name('admin_forget_password');
 Route::post('/admin/forget-password-submit', [AdminLoginController::class, 'forget_password_submit'])->name('admin_forget_password_submit');
@@ -76,4 +82,5 @@ Route::post('/admin/post/update/{id}', [AdminPostController::class, 'update'])->
 
 Route::get('/admin/post/delete/{id}', [AdminPostController::class, 'delete'])->name('admin_post_delete')->middleware('admin:admin');
 
+});
 
